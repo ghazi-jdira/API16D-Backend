@@ -1,0 +1,74 @@
+[
+ {
+  "name": "Annular Hydril 13-5/8\" 5k",
+  "rwp": 5000,
+  "open": 22.4,
+  "close": 25.2,
+  "ratio": "-",
+  "pclose": 1500,
+  "note": "Hydril GK 13-5/8\" 5K (typical); 1,500 psig close"
+ },
+ {
+  "name": "Ram BOP 13-5/8\" 10k",
+  "rwp": 10000,
+  "open": 10.8,
+  "close": 12.3,
+  "ratio": 7.65,
+  "pclose": 1307.18954248366,
+  "note": "Cameron U Pipe Ram 13-5/8\" 10K, API 16D Annex C Ex.6"
+ },
+ {
+  "name": "SHEAR Ram BOP 13-5/8\" 10k",
+  "rwp": 10000,
+  "open": 16,
+  "close": 21.5,
+  "ratio": 6.2,
+  "pclose": 1612.9032258064515,
+  "note": "Cameron U Blind Shear Ram 13-5/8\" 10K, API 16D Annex C Ex.6"
+ },
+ {
+  "name": "Annular BOP 11\" 5k",
+  "rwp": 5000,
+  "open": 7.98,
+  "close": 9.81,
+  "ratio": "-",
+  "pclose": 1500,
+  "note": "Hydril GK 11\" 5K (typical)"
+ },
+ {
+  "name": "Pipe Ram BOP 11\" 5k",
+  "rwp": 5000,
+  "open": 3.4,
+  "close": 3.5,
+  "ratio": 7.3,
+  "pclose": 684.931506849315,
+  "note": "Cameron U Pipe Ram 11\" 5K (typical)"
+ },
+ {
+  "name": "SHEAR Ram BOP 11\" 5k",
+  "rwp": 5000,
+  "open": 6.8,
+  "close": 12.2,
+  "ratio": 21.1,
+  "pclose": 236.96682464454975,
+  "note": "Cameron U Blind Shear Ram 11\" 5K (typical)"
+ },
+ {
+  "name": "Pipe Ram BOP 11\" 3k",
+  "rwp": 3000,
+  "open": 4.95,
+  "close": 5.81,
+  "ratio": 7.65,
+  "pclose": 392.156862745098,
+  "note": "Cameron U Pipe Ram 11\" 3K (typical)"
+ },
+ {
+  "name": "HCR Valve 5k",
+  "rwp": 5000,
+  "open": 0.85,
+  "close": 0.85,
+  "ratio": "-",
+  "pclose": 780,
+  "note": "HCR 2-1/16\" 5K, API 16D Annex C Ex.6"
+ }
+]

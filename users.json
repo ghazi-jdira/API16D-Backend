@@ -1,0 +1,12 @@
+{
+  "admin": {
+    "salt": "a2bc8bdba450a5950d6ed97c9f6a6cfb",
+    "hash": "122714fcca52ae84a4d1036bc82fe3f907954e28da897211e48c2f489fa450ae",
+    "iterations": 200000
+  },
+  "sigma_client": {
+    "salt": "9a08653aa0cf322ca40f8273b1f9636f",
+    "hash": "69aa82ac0fd0f002634979efe7d07f17a25f6007cf3f2ae98095df1eca3c1469",
+    "iterations": 200000
+  }
+}

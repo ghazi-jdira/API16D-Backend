@@ -1,0 +1,10 @@
+[
+  { "name": "Annular Hydril 13-5/8\" 5k", "rwp": 5000, "open": 22.4, "close": 25.2, "ratio": "-", "pclose": 1500, "note": "Annular Hydril 13-5/8\" 5K; 1,500 psig close" },
+  { "name": "Ram BOP 13-5/8\" 10k", "rwp": 10000, "open": 10.8, "close": 12.3, "ratio": 7.65, "pclose": 1307.18954248366, "note": "Ram BOP 13-5/8\" 10K (RWP/ratio close)" },
+  { "name": "SHEAR Ram BOP 13-5/8\" 10k", "rwp": 10000, "open": 16, "close": 21.5, "ratio": 6.2, "pclose": 1612.9032258064515, "note": "Shear Ram BOP 13-5/8\" 10K (RWP/ratio close)" },
+  { "name": "Annular BOP 11\" 5k", "rwp": 5000, "open": 7.98, "close": 9.81, "ratio": "-", "pclose": 1500, "note": "Annular BOP 11\" 5K; 1,500 psig close" },
+  { "name": "Pipe Ram BOP 11\" 5k", "rwp": 5000, "open": 3.4, "close": 3.5, "ratio": 7.3, "pclose": 684.931506849315, "note": "Pipe Ram BOP 11\" 5K (RWP/ratio close)" },
+  { "name": "SHEAR Ram BOP 11\" 5k", "rwp": 5000, "open": 6.8, "close": 12.2, "ratio": 21.1, "pclose": 236.96682464454975, "note": "Shear Ram BOP 11\" 5K (RWP/ratio close)" },
+  { "name": "Pipe Ram BOP 11\" 3k", "rwp": 3000, "open": 4.95, "close": 5.81, "ratio": 7.65, "pclose": 392.156862745098, "note": "Pipe Ram BOP 11\" 3K (RWP/ratio close)" },
+  { "name": "HCR Valve 5k", "rwp": 5000, "open": 0.85, "close": 0.85, "ratio": "-", "pclose": 780, "note": "HCR side-outlet valve 5K; 780 psig close" }
+]
