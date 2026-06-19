@@ -69,23 +69,49 @@ def _shear_pressure(sh):
 
 
 # ---- Equipment-row resolution -------------------------------------------
+def _row_base(r):
+    """Resolve a row's identity to (name, rwp, spec).
+
+    Catalogue rows carry an ``equip`` name that must match a known BOP spec;
+    their rwp and default close/ratio/pclose come from that spec. Rows flagged
+    ``custom`` are user-defined equipment with no catalogue entry: their name
+    and rwp come straight from the row and the spec is an empty dict (so every
+    field falls back to whatever the row itself provides).
+
+    Returns ``(None, None, None)`` for a catalogue row whose ``equip`` does not
+    match any spec, so the caller can skip it.
+    """
+    if r.get("custom"):
+        name = (r.get("name") or "").strip() or "Custom equipment"
+        rwp = r["rwp"] if _is_num(r.get("rwp")) else None
+        return name, rwp, {}
+    name = r.get("equip")
+    s = _SPEC_BY_NAME.get(name)
+    if not name or not s:
+        return None, None, None
+    return name, s["rwp"], s
+
+
 def _resolve_method_b(rows):
     resolved = []
     for r in rows:
-        name = r.get("equip")
-        s = _SPEC_BY_NAME.get(name)
-        if not name or not s:
+        name, rwp, s = _row_base(r)
+        if name is None:
             continue
-        ratio = s["ratio"] if _is_num(s.get("ratio")) else None
-        if _is_num(s.get("pclose")):
+        close = r["close"] if _is_num(r.get("close")) else s.get("close")
+        ratio = r["ratio"] if _is_num(r.get("ratio")) else (
+            s["ratio"] if _is_num(s.get("ratio")) else None)
+        if _is_num(r.get("pclose")):
+            pclose = r["pclose"]
+        elif _is_num(s.get("pclose")):
             pclose = s["pclose"]
-        elif ratio:
-            pclose = s["rwp"] / ratio
+        elif ratio and _is_num(rwp):
+            pclose = rwp / ratio
         else:
             pclose = 0
         resolved.append({
-            "name": name, "rwp": s["rwp"], "open": s.get("open"),
-            "close": s.get("close"), "ratio": s.get("ratio"), "pclose": pclose,
+            "name": name, "rwp": rwp, "open": s.get("open"),
+            "close": close, "ratio": ratio, "pclose": pclose,
         })
     fvr = sum(r["close"] for r in resolved if _is_num(r.get("close")))
     return resolved, fvr
@@ -94,25 +120,24 @@ def _resolve_method_b(rows):
 def _resolve_method_c(rows):
     resolved = []
     for r in rows:
-        name = r.get("equip")
-        s = _SPEC_BY_NAME.get(name)
-        if not name or not s:
+        name, rwp, s = _row_base(r)
+        if name is None:
             continue
-        ratio = r.get("ratio") if _is_num(r.get("ratio")) else (
+        ratio = r["ratio"] if _is_num(r.get("ratio")) else (
             s["ratio"] if _is_num(s.get("ratio")) else None)
-        use_phase = _is_num(ratio) and _is_num(r.get("mopflps"))
+        use_phase = _is_num(ratio) and _is_num(r.get("mopflps")) and _is_num(rwp)
         if use_phase:
-            adjusted = r["mopflps"] + s["rwp"] / ratio
+            adjusted = r["mopflps"] + rwp / ratio
         elif _is_num(s.get("pclose")):
             adjusted = s["pclose"]
-        elif _is_num(ratio):
-            adjusted = s["rwp"] / ratio
+        elif _is_num(ratio) and _is_num(rwp):
+            adjusted = rwp / ratio
         else:
             adjusted = r["mopflps"] if _is_num(r.get("mopflps")) else 0
         close = r["close"] if _is_num(r.get("close")) else (
             s["close"] if _is_num(s.get("close")) else 0)
         resolved.append({
-            "name": name, "rwp": s["rwp"], "close": close,
+            "name": name, "rwp": rwp, "close": close,
             "ratio": ratio, "mopflps": r.get("mopflps"), "adjusted": adjusted,
         })
     fvr = sum(r["close"] for r in resolved if _is_num(r.get("close")))
